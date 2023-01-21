@@ -88,24 +88,14 @@ add_action('starter_language', 'starter_language_list');
 // Header logo
 function starter_header_logo() { ?>
     <?php
-    $starter_page_sec_logo_on = function_exists('get_field') ? get_field('is_enable_sec_logo') : NULL;
-
-    $starter_logo = get_template_directory_uri() . '/assets/img/logo/logo-white.png';
-    $starter_logo_black = get_template_directory_uri() . '/assets/img/logo/logo-black.png';
-
-    $starter_site_logo = get_theme_mod('primary_logo', $starter_logo);
-    $starter_secondary_logo = get_theme_mod('secondary_logo', $starter_logo_black);
+    // site logo
+    $starter_logo = get_template_directory_uri() . '/assets/img/logo/logo-black.png';
+    $starter_site_logo = get_theme_mod('site_logo', $starter_logo);
     ?>
 
-    <?php if (!empty($starter_page_sec_logo_on)) : ?>
-        <a class="secondary-logo" href="<?php print esc_url(home_url('/')); ?>">
-            <img src="<?php print esc_url($starter_secondary_logo); ?>" alt="<?php print esc_attr__('logo', 'starter'); ?>" />
-        </a>
-    <?php else : ?>
-        <a class="standard-logo" href="<?php print esc_url(home_url('/')); ?>">
-            <img src="<?php print esc_url($starter_site_logo); ?>" alt="<?php print esc_attr__('logo', 'starter'); ?>" />
-        </a>
-    <?php endif; ?>
+    <a class="site__logo" href="<?php print esc_url(home_url('/')); ?>">
+        <img src="<?php echo esc_url($starter_site_logo); ?>" alt="<?php print esc_attr__('logo', 'starter'); ?>" />
+    </a>
 <?php
 }
 
@@ -138,39 +128,36 @@ function starter_mobile_logo() {
 }
 
 /**
- * [starter_header_social_profiles description]
+ * [starter_header_socials description]
  * @return [type] [description]
  */
-function starter_header_social_profiles() {
-    $starter_header_fb_link = get_theme_mod('header_fb_link', __('https://facebook.com/', 'starter'));
-    $starter_header_twitter_link = get_theme_mod('header_twitter_link', __('https://twitter.com/', 'starter'));
-    $starter_header_linkedin_link = get_theme_mod('header_linkedin_link', __('https://linkedin.com/', 'starter'));
-    $starter_header_instagram_link = get_theme_mod('header_instagram_link', __('https://instagram.com/', 'starter'));
-    $starter_header_youtube_link = get_theme_mod('header_youtube_link', __('https://youtube.com/', 'starter'));
-    ?>
-    <ul>
-        <?php if (!empty($starter_header_fb_link)) : ?>
-            <li><a href="<?php print esc_url($starter_header_fb_link); ?>"><span><i class="fab fa-facebook-f"></i></span></a></li>
-        <?php endif; ?>
+function starter_header_socials() {
+    $header_fb_link = get_theme_mod('header_fb_link', __('https://facebook.com/', 'starter'));
+    $header_ig_link = get_theme_mod('header_ig_link', __('https://instagram.com/', 'starter'));
+    $header_linkedin_link = get_theme_mod('header_linkedin_link', __('https://linkedin.com/', 'starter'));
+    $header_twitter_link = get_theme_mod('header_twitter_link', __('https://twitter.com/', 'starter'));
+    $header_pinterest_link = get_theme_mod('header_pinterest_link', __('https://pinterest.com/', 'starter'));
+    $header_youtube_link = get_theme_mod('header_youtube_link', __('https://youtube.com/', 'starter'));
 
-        <?php if (!empty($starter_header_twitter_link)) : ?>
-            <li><a href="<?php print esc_url($starter_header_twitter_link); ?>"><span><i class="fab fa-twitter"></i></span></a></li>
-        <?php endif; ?>
 
-        <?php if (!empty($starter_header_instagram_link)) : ?>
-            <li><a href="<?php print esc_url($starter_header_instagram_link); ?>"><span><i class="fab fa-instagram"></i></span></a></li>
-        <?php endif; ?>
-
-        <?php if (!empty($starter_header_linkedin_link)) : ?>
-            <li><a href="<?php print esc_url($starter_header_linkedin_link); ?>"><span><i class="fab fa-linkedin-in"></i></span></a></li>
-        <?php endif; ?>
-
-        <?php if (!empty($starter_header_youtube_link)) : ?>
-            <li><a href="<?php print esc_url($starter_header_youtube_link); ?>"><span><i class="fab fa-youtube"></i></span></a></li>
-        <?php endif; ?>
-    </ul>
-
-<?php
+    if (!empty($header_fb_link)) : ?>
+        <a href="<?php echo esc_url($header_fb_link); ?>"><i class="fab fa-facebook-f"></i></a>
+    <?php endif;
+    if (!empty($header_ig_link)) : ?>
+        <a href="<?php echo esc_url($header_ig_link); ?>"><i class="fab fa-instagram"></i></a>
+    <?php endif;
+    if (!empty($header_linkedin_link)) : ?>
+        <a href="<?php echo esc_url($header_linkedin_link); ?>"><i class="fab fa-linkedin-in"></i></a>
+    <?php endif;
+    if (!empty($header_twitter_link)) : ?>
+        <a href="<?php echo esc_url($header_twitter_link); ?>"><i class="fab fa-twitter"></i></a>
+    <?php endif;
+    if (!empty($header_pinterest_link)) : ?>
+        <a href="<?php echo esc_url($header_pinterest_link); ?>"><i class="fab fa-pinterest"></i></a>
+    <?php endif;
+    if (!empty($header_youtube_link)) : ?>
+        <a href="<?php echo esc_url($header_youtube_link); ?>"><i class="fab fa-youtube"></i></a>
+    <?php endif;
 }
 
 function starter_footer_social_profiles() {
@@ -179,7 +166,7 @@ function starter_footer_social_profiles() {
     $starter_footer_instagram_link = get_theme_mod('footer_instagram_link', __('#', 'starter'));
     $starter_footer_linkedin_link = get_theme_mod('footer_linkedin_link', __('#', 'starter'));
     $starter_footer_youtube_link = get_theme_mod('footer_youtube_link', __('#', 'starter'));
-?>
+    ?>
     <ul>
         <?php if (!empty($starter_footer_fb_link)) : ?>
             <li>

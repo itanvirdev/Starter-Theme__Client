@@ -341,6 +341,26 @@ function starter_register_elementor_locations($elementor_theme_manager) {
 }
 add_action('elementor/theme/register_locations', 'starter_register_elementor_locations');
 
+/**
+ * Check hide title.
+ *
+ * @param bool $val default value.
+ *
+ * @return bool
+ */
+if (!function_exists('starter_check_hide_title')) {
+   function starter_check_hide_title($val) {
+      if (defined('ELEMENTOR_VERSION')) {
+         $current_doc = Elementor\Plugin::instance()->documents->get(get_the_ID());
+         if ($current_doc && 'yes' === $current_doc->get_settings('hide_title')) {
+            $val = false;
+         }
+      }
+      return $val;
+   }
+}
+add_filter('starter_page_title', 'starter_check_hide_title');
+
 // ACF Data
 // ----------------------------------------------------------------------------------------
 if (class_exists('ACF')) {

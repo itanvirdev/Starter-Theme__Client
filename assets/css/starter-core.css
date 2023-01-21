@@ -817,39 +817,97 @@ input[type="color"] {
 		margin-right: 20px;
 	}
 }
-
-.header__area-3 {
-	position: absolute;
-	z-index: 222;
-	width: 100%;
-}
 .header__top {
-	padding: 10px 0;
+	background-color: var(--color-primary);
+	padding: 5px 0;
 }
-.header__top-info {
+.header-top__info p {
+	font-size: 14px;
+	line-height: 1;
+	margin-bottom: 0px;
+	color: var(--color-white);
+}
+
+.header-top__socials a {
+	font-size: 16px;
+	display: inline-block;
+	color: var(--color-white);
+}
+
+.header-top__socials a:not(:first-child) {
+	margin-left: 10px;
+}
+.header-contact__info {
 	display: flex;
 	justify-content: end;
 }
-.header__top-info p {
-	font-size: 14px;
-	color: var(--ss-common-white);
+
+.header-contact__list {
+	display: flex;
+	align-items: center;
+}
+
+.header-contact__list .contact__icon {
+	font-size: 30px;
+	color: var(--color-primary);
+	margin-right: 10px;
+}
+
+.header-contact__list .sm-clist__text > h4 {
+	font-size: 18px;
 	margin-bottom: 0;
+	line-height: 1.2;
 }
-.header__top-info p a {
-	text-decoration: underline;
+
+.header-contact__list .sm-clist__text > span {
+	display: block;
+	font-size: 14px;
 }
-.header__top-info-text {
-	margin-right: 50px;
-	position: relative;
+
+.header-contact__list .sm-clist__text > h4 a:hover {
+	color: var(--color-primary);
 }
-.header__top-info-text::before {
-	position: absolute;
-	content: "";
-	width: 2px;
-	height: 10px;
-	background: #ff7d42;
-	right: -25px;
-	top: 8px;
+
+.header-contact__list:not(:last-child) {
+	margin-right: 25px;
+}
+.header-contact__list.header__button {
+	background-color: var(--color-white);
+	box-shadow: 0px 16px 32px 0px rgb(0 0 0 / 4%);
+	padding: 5px 20px;
+	border-radius: 6px;
+	transition: all 0.3s ease-in-out 0s;
+}
+
+.header__middle {
+	background-color: #f7f7f7;
+	padding: 20px 0;
+}
+
+.header-contact__list.header__button .contact__icon {
+	font-size: 15px;
+	color: #acacac;
+	margin-left: 25px;
+}
+
+.header-contact__list.header__button:hover .contact__icon {
+	color: var(--color-white);
+}
+
+.header-contact__list.header__button:hover {
+	background-color: var(--color-primary);
+}
+
+.header-contact__list.header__button:hover .sm-clist__text span,
+.header-contact__list.header__button:hover .sm-clist__text h4 {
+	color: var(--color-white);
+}
+
+.header-contact__list.header__button:hover .sm-clist__text h4 a:hover {
+	color: var(--color-white);
+}
+.header__bottom {
+	background-color: #24292d;
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	.header__top-info-text::before {

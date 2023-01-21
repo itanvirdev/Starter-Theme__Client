@@ -1,88 +1,129 @@
 <?php
 
 /**
- * Template part for displaying header layout one
+ * Template part for displaying header layout two
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package starter
  */
 
-// info
-$starter_topbar_switch = get_theme_mod('starter_topbar_switch', false);
-$starter_phone_num = get_theme_mod('starter_phone_num', __('786 686 350 36', 'starter'));
-$starter_mail_id = get_theme_mod('starter_mail_id', __('info@starter.com', 'starter'));
-$starter_address = get_theme_mod('starter_address', __('Moon ave, New York, 2020 NY US', 'starter'));
-$starter_address_url = get_theme_mod('starter_address_url', __('https://goo.gl/maps/qzqY2PAcQwUz1BYN9', 'starter'));
 
-// contact button
-$starter_button_text = get_theme_mod('header_right_button_text', __('Contact Us', 'starter'));
-$starter_button_link = get_theme_mod('header_right_button_link', __('#', 'starter'));
 
-// acc button
-$starter_acc_button_text = get_theme_mod('starter_acc_button_text', __('Login', 'starter'));
-$starter_acc_button_link = get_theme_mod('starter_acc_button_link', __('#', 'starter'));
 
-// header right
-$starter_header_right = get_theme_mod('starter_header_right', false);
-$starter_menu_col = $starter_header_right ? 'col-xl-7 col-lg-6 col-md-6 col-6' : 'col-xl-10 col-lg-10 col-md-6 col-6 text-end';
+// header topbar 
+$header_topbar_switch = get_theme_mod('header_topbar_switch', false);
+$header_top_info = get_theme_mod('header_top_info', __('Free Home Delivery', 'starter'));
+$header_social_switcher = get_theme_mod('header_social_switcher', false);
 
+$header_address = get_theme_mod('header_address', __('Moon ave, New York, 2020 NY US', 'starter'));
+$header_phone_number = get_theme_mod('header_phone_number', __('+(088) 234 567 899', 'starter'));
+$header_right_button_switch = get_theme_mod('header_right_button', false);
+$header_right_button_text = get_theme_mod('header_right_button_text', __('Make Request', 'starter'));
+$header_right_button_link = get_theme_mod('header_right_button_link', __('#', 'starter'));
+
+$header_search_switch = get_theme_mod('header_search', false);
+$header_lang = get_theme_mod('header_lang', false);
+
+$starter_menu_col = $header_search_switch ? 'col-xl-10 col-lg-10 col-md-6 col-6' : 'col-xl-12 col-lg-12 col-md-12 col-12';
 ?>
+
 <!-- header-area-start -->
-<header id="header-sticky" class="header-area">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-xl-2 col-lg-2 col-md-6 col-6">
-        <div class="logo-area">
-          <div class="logo">
-            <?php starter_header_logo(); ?>
+<header class="header__area">
+  <?php if (!empty($header_topbar_switch)) : ?>
+    <div class="header__top">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-between align-items-center">
+            <div class="header-top__info">
+              <p><?php esc_html_e($header_top_info, 'starter'); ?></p>
+            </div>
+            <?php if (!empty($header_social_switcher)) : ?>
+              <div class="header-top__socials">
+                <?php starter_header_socials(); ?>
+              </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
-      <div class="<?php echo esc_attr($starter_menu_col); ?>">
-        <div class="menu-area menu-padding">
-          <div class="main-menu">
+    </div>
+  <?php endif; ?>
+
+  <div class="header__middle">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-xl-4 col-lg-3">
+          <div class="header__logo">
+            <?php starter_header_logo(); ?>
+          </div>
+        </div>
+        <div class="col-xl-8 col-lg-9">
+          <div class="header-contact__info">
+            <?php if (!empty($header_address)) : ?>
+              <div class="header-contact__list">
+                <div class="contact__icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="sm-clist__text">
+                  <h4><?php echo esc_html($header_address); ?></h4>
+                  <span><?php echo esc_html__('Contact Us', 'starter'); ?></span>
+                </div>
+              </div>
+            <?php endif;
+
+            if (!empty($header_phone_number)) :
+            ?>
+              <div class="header-contact__list">
+                <div class="contact__icon">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="sm-clist__text">
+                  <h4><a href="tel:<?php echo esc_url($header_phone_number); ?>"><?php echo esc_html($header_phone_number); ?></a></h4>
+                  <span><?php echo esc_html__('Get Support', 'starter'); ?></span>
+                </div>
+              </div>
+            <?php endif;
+
+            if (!empty($header_right_button_switch)) :
+            ?>
+              <a href="<?php echo esc_url($header_right_button_link); ?>" class="header-contact__list header__button">
+                <div class="sm-clist__text">
+                  <span><?php echo esc_html__('Get A Quote', 'starter'); ?></span>
+                  <h4><?php echo esc_html($header_right_button_text); ?></h4>
+                </div>
+                <div class="contact__icon">
+                  <i class="fal fa-long-arrow-right"></i>
+                </div>
+              </a>
+            <?php endif; ?>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="header-sticky" class="header__bottom">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="<?php echo esc_attr($starter_menu_col) ?>">
+          <div class="main-menu main-menu-2">
             <nav id="mobile-menu">
               <?php starter_header_menu(); ?>
             </nav>
           </div>
         </div>
-        <div class="side-menu-icon d-lg-none text-end">
-          <a href="javascript:void(0)" class="info-toggle-btn f-right sidebar-toggle-btn"><i class="fal fa-bars"></i></a>
-        </div>
-      </div>
-
-      <?php if (!empty($starter_header_right)) : ?>
-        <div class="col-xl-3 col-lg-4 d-none d-lg-block">
-          <div class="header-info f-right">
-            <?php
-            if (!empty($starter_phone_num)) :
-            ?>
-              <div class="info-item info-item-right">
-                <span><?php echo esc_html__('Phone Number', 'starter'); ?></span>
-                <h5><a href="tel:<?php echo esc_attr($starter_phone_num); ?>"><?php echo esc_html($starter_phone_num); ?></a></h5>
+        <?php if (!empty($header_search_switch)) : ?>
+          <div class="col-xl-2 col-lg-2 col-md-6 col-6">
+            <div class="header__sm-action">
+              <div class="header__sm-action-item">
+                <a href="javascript:void(0)" data-bs-toggle="modal" class="search" data-bs-target="#search-modal"><i class="fal fa-search"></i></a>
               </div>
-            <?php
-            endif;
-            ?>
-
-            <?php
-            if (!empty($starter_mail_id)) :
-            ?>
-              <div class="info-item">
-                <span><?php echo esc_html__('Free Consultancy', 'starter'); ?></span>
-                <h5><a href="mailto:<?php echo esc_attr($starter_mail_id); ?>"><?php echo esc_html($starter_mail_id); ?></a></h5>
-              </div>
-            <?php
-            endif;
-            ?>
+            </div>
           </div>
-        </div>
-      <?php endif; ?>
-
+        <?php endif; ?>
+      </div>
     </div>
   </div>
 </header>
 <!-- header-area-end -->
-
-<?php get_template_part('template-parts/header/header-side-info'); ?>

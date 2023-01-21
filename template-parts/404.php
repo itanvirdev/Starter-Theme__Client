@@ -22,7 +22,7 @@ get_header();
         $starter_error_desc = get_theme_mod('starter_error_desc', __('Oops! The page you are looking for does not exist. It might have been moved or deleted.', 'starter'));
         ?>
         <div class="ss-error__wrap text-center">
-          <div class="ss-error__thumb mb-45">
+          <div class="ss-error__thumb">
             <img src="<?php echo esc_url($starter_404_bg); ?>" alt="<?php print esc_attr__('Error 404', 'starter'); ?>">
           </div>
           <div class="ss-error__content">

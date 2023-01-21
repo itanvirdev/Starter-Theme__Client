@@ -23,6 +23,17 @@ get_header();
         <div class="ss-page__content">
           <?php
           if (have_posts()) :
+
+            if (apply_filters('starter_page_title', true)) : ?>
+              <header class="ss-page__header">
+                <?php
+                single_post_title('<h1 class="entry-title ss-page__title">', '</h1>');
+                ?>
+              </header><!-- .page-header -->
+          <?php
+            endif; // .hide-title
+
+
             while (have_posts()) : the_post();
               get_template_part('template-parts/content', 'page');
             endwhile;

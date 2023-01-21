@@ -9,6 +9,13 @@
 (function ($) {
 	"use strict";
 
+	var windowOn = $(window);
+	////////////////////////////////////////////////////
+	// 01. PreLoader Js
+	windowOn.on("load", function () {
+		$(".preloader").fadeOut(500);
+	});
+
 	////////////////////////////////////////////////////
 	// 01. Menu Last Class
 	$(".main-menu nav > ul > li").slice(-3).addClass("menu-last");
@@ -16,13 +23,6 @@
 	////////////////////////////////////////////////////
 	// 07. Nice Select Js
 	$("select").niceSelect();
-
-	var windowOn = $(window);
-	////////////////////////////////////////////////////
-	// 01. PreLoader Js
-	windowOn.on("load", function () {
-		$(".preloader").fadeOut(500);
-	});
 
 	////////////////////////////////////////////////////
 	// 02. Mobile Menu Js

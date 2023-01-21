@@ -19,14 +19,28 @@ $blog_column = is_active_sidebar('blog-sidebar') ? 8 : 12;
     <div class="row">
       <div class="col-lg-<?php print esc_attr($blog_column); ?>">
         <div class="ss-post__container">
+
           <?php if (have_posts()) : ?>
-            <header class="ss-page__header d-none">
-              <?php
-              the_archive_title('<h1 class="page-title">', '</h1>');
-              the_archive_description('<div class="archive-description">', '</div>');
-              ?>
-            </header><!-- .page-header -->
+
+            <?php if (apply_filters('starter_page_title', true)) : ?>
+              <header class="ss-page__header">
+                <?php
+                if (is_home() && !is_front_page()) :
+                  single_post_title('<h1 class="entry-title ss-page__title">', '</h1>');
+
+                else :
+                  the_archive_title('<h1 class="entry-title ss-archive__title">', '</h1>');
+                  the_archive_description('<div class="ss-archive__description">', '</div>');
+                endif;
+                ?>
+                <?php
+
+
+                ?>
+              </header><!-- .page-header -->
             <?php
+            endif; // .hide-title
+
             /* Start the Loop */
             while (have_posts()) :
               the_post();

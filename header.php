@@ -29,9 +29,9 @@
 
 
     <?php
-    $starter_preloader_switcher = get_theme_mod('starter_preloader', false);
     $starter_backtotop_switcher = get_theme_mod('starter_backtotop', false);
 
+    $starter_preloader_switcher = get_theme_mod('starter_preloader', false);
     $starter_preloader_logo = get_template_directory_uri() . '/assets/img/preloader.svg';
 
     $preloader_logo = get_theme_mod('preloader_logo', $starter_preloader_logo);
