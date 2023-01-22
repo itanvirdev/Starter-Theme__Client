@@ -8,37 +8,6 @@
  * @package starter
  */
 
-/** 
- *
- * starter header
- */
-
-// function starter_check_header() {
-
-//     $starter_page_header_style = function_exists('get_field') ? get_field('page_header_style') : NULL;
-//     $starter_default_header_style = get_theme_mod('choose_default_header', 'header-style-1');
-
-//     if ($starter_page_header_style == 'header-style-1') {
-//         get_template_part('template-parts/header/header-1');
-//     } elseif ($starter_page_header_style == 'header-style-2') {
-//         get_template_part('template-parts/header/header-2');
-//     } elseif ($starter_page_header_style == 'header-style-3') {
-//         get_template_part('template-parts/header/header-3');
-//     } else {
-
-//         /** default header style **/
-//         if ($starter_default_header_style == 'header-style-2') {
-//             get_template_part('template-parts/header/header-2');
-//         } elseif ($starter_default_header_style == 'header-style-3') {
-//             get_template_part('template-parts/header/header-3');
-//         } else {
-//             get_template_part('template-parts/header/header-1');
-//         }
-//     }
-// }
-// add_action('starter_header_style', 'starter_check_header', 10);
-
-
 /**
  * [starter_header_lang description]
  * @return [type] [description]
@@ -160,7 +129,7 @@ function starter_header_socials() {
     <?php endif;
 }
 
-function starter_footer_social_profiles() {
+function starter_footer_socials() {
     $starter_footer_fb_link = get_theme_mod('footer_fb_link', __('#', 'starter'));
     $starter_footer_twitter_link = get_theme_mod('footer_twitter_link', __('#', 'starter'));
     $starter_footer_instagram_link = get_theme_mod('footer_instagram_link', __('#', 'starter'));
@@ -259,41 +228,6 @@ function starter_footer_menu() {
         'walker'         => new Starter_Navwalker_Class,
     ]);
 }
-
-// /**
-//  *
-//  * starter footer
-//  */
-// add_action('starter_footer_style', 'starter_check_footer', 10);
-
-// function starter_check_footer() {
-//     $starter_page_footer_style = function_exists('get_field') ? get_field('page_footer_style') : NULL;
-
-//     $starter_default_footer_style = get_theme_mod('choose_default_footer', 'footer-style-1');
-
-//     if ($starter_page_footer_style == 'footer-style-1') {
-//         get_template_part('template-parts/footer/footer-1');
-//     } elseif ($starter_page_footer_style == 'footer-style-2') {
-//         get_template_part('template-parts/footer/footer-2');
-//     } elseif ($starter_page_footer_style == 'footer-style-3') {
-//         get_template_part('template-parts/footer/footer-3');
-//     } elseif ($starter_page_footer_style == 'footer-style-4') {
-//         get_template_part('template-parts/footer/footer-4');
-//     } else {
-
-//         /** default footer style **/
-//         if ($starter_default_footer_style == 'footer-style-2') {
-//             get_template_part('template-parts/footer/footer-2');
-//         } elseif ($starter_default_footer_style == 'footer-style-3') {
-//             get_template_part('template-parts/footer/footer-3');
-//         } elseif ($starter_default_footer_style == 'footer-style-4') {
-//             get_template_part('template-parts/footer/footer-4');
-//         } else {
-//             get_template_part('template-parts/footer/footer-1');
-//         }
-//     }
-// }
-
 // starter_copyright_text
 function starter_copyright_text() {
     print get_theme_mod('starter_copyright', starter_kses('© 2022 Starter, All Rights Reserved. Design By <a href="#">iTanvir</a>'));
@@ -665,3 +599,28 @@ function starter_kses($raw) {
 
     return $allowed;
 }
+
+
+
+// Allow SVG
+add_filter('wp_check_filetype_and_ext', function ($data, $file, $filename, $mimes) {
+
+    global $wp_version;
+    if ($wp_version !== '4.7.1') {
+        return $data;
+    }
+
+    $filetype = wp_check_filetype($filename, $mimes);
+
+    return [
+        'ext'             => $filetype['ext'],
+        'type'            => $filetype['type'],
+        'proper_filename' => $data['proper_filename']
+    ];
+}, 10, 4);
+
+function tp_mime_types($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'tp_mime_types');

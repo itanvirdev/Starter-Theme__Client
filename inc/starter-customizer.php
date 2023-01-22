@@ -554,23 +554,6 @@ add_filter('kirki/fields', '_header_blog_fields');
 Footer
 */
 function _footer_setting_fields($fields) {
-  // Footer Setting
-  $fields[] = [
-    'type'        => 'radio-image',
-    'settings'    => 'choose_default_footer',
-    'label'       => esc_html__('Footer Style', 'starter'),
-    'description'       => esc_html__('Choose your footer style.', 'starter'),
-    'section'     => 'footer_setting',
-    'placeholder' => esc_html__('Select an option...', 'starter'),
-    'priority'    => 10,
-    'multiple'    => 1,
-    'choices'     => [
-      'footer-style-1'   => get_template_directory_uri() . '/inc/img/footer/footer-1.png',
-      'footer-style-2' => get_template_directory_uri() . '/inc/img/footer/footer-2.png',
-      'footer-style-3' => get_template_directory_uri() . '/inc/img/footer/footer-3.png',
-    ],
-    'default'     => 'footer-style-1',
-  ];
 
   $fields[] = [
     'type'        => 'select',
@@ -583,7 +566,6 @@ function _footer_setting_fields($fields) {
     'priority'    => 10,
     'multiple'    => 1,
     'choices'     => [
-      '5' => esc_html__('Column 5', 'starter'),
       '4' => esc_html__('Column 4', 'starter'),
       '3' => esc_html__('Column 3', 'starter'),
       '2' => esc_html__('Column 2', 'starter'),
@@ -596,13 +578,6 @@ function _footer_setting_fields($fields) {
     'label'       => esc_html__('Background Image', 'starter'),
     'description' => esc_html__('This image will be show footer background.', 'starter'),
     'section'     => 'footer_setting',
-    'active_callback' => [
-      [
-        'setting'  => 'choose_default_footer',
-        'operator' => '!==',
-        'value'    => 'footer-style-1',
-      ],
-    ],
   ];
 
   $fields[] = [
@@ -613,58 +588,7 @@ function _footer_setting_fields($fields) {
     'section'     => 'footer_setting',
     'default'     => '#24292d',
     'priority'    => 10,
-    'active_callback' => [
-      [
-        'setting'  => 'choose_default_footer',
-        'operator' => '!==',
-        'value'    => 'footer-style-2',
-      ],
-      [
-        'setting'  => 'choose_default_footer',
-        'operator' => '!==',
-        'value'    => 'footer-style-3',
-      ],
-    ],
   ];
-
-  // $fields[] = [
-  //   'type'     => 'switch',
-  //   'settings' => 'footer_style_2_switch',
-  //   'label'    => esc_html__('Footer Style 2 On/Off', 'starter'),
-  //   'section'  => 'footer_setting',
-  //   'default'  => '0',
-  //   'priority' => 10,
-  //   'choices'  => [
-  //     'on'  => esc_html__('Enable', 'starter'),
-  //     'off' => esc_html__('Disable', 'starter'),
-  //   ],
-  // ];
-
-  // $fields[] = [
-  //   'type'     => 'switch',
-  //   'settings' => 'footer_style_3_switch',
-  //   'label'    => esc_html__('Footer Style 3 On/Off', 'starter'),
-  //   'section'  => 'footer_setting',
-  //   'default'  => '0',
-  //   'priority' => 10,
-  //   'choices'  => [
-  //     'on'  => esc_html__('Enable', 'starter'),
-  //     'off' => esc_html__('Disable', 'starter'),
-  //   ],
-  // ];
-
-  // $fields[] = [
-  //   'type'     => 'switch',
-  //   'settings' => 'footer_style_4_switch',
-  //   'label'    => esc_html__('Footer Style 4 On/Off', 'starter'),
-  //   'section'  => 'footer_setting',
-  //   'default'  => '0',
-  //   'priority' => 10,
-  //   'choices'  => [
-  //     'on'  => esc_html__('Enable', 'starter'),
-  //     'off' => esc_html__('Disable', 'starter'),
-  //   ],
-  // ];
 
   $fields[] = [
     'type'     => 'text',
@@ -673,27 +597,6 @@ function _footer_setting_fields($fields) {
     'section'  => 'footer_setting',
     'default'  => esc_html__('Copyright &copy; 2022 iTanvir. All Rights Reserved', 'starter'),
     'priority' => 10,
-  ];
-  // footer menu switcher
-  $fields[] = [
-    'type'     => 'switch',
-    'settings' => 'footer_menu_switcher',
-    'label'    => esc_html__('Bottom Menu', 'starter'),
-    'description'    => esc_html__('Show footer bottom menu.', 'starter'),
-    'section'  => 'footer_setting',
-    'default'  => '0',
-    'priority' => 10,
-    'choices'  => [
-      'on'  => esc_html__('Enable', 'starter'),
-      'off' => esc_html__('Disable', 'starter'),
-    ],
-    'active_callback' => [
-      [
-        'setting'  => 'choose_default_footer',
-        'operator' => '==',
-        'value'    => 'footer-style-3',
-      ],
-    ],
   ];
 
   // footer socials
