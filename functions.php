@@ -324,8 +324,7 @@ add_action('admin_enqueue_scripts', 'starter_admin_custom_scripts');
 function starter_admin_custom_scripts() {
    wp_enqueue_media();
    wp_enqueue_style('customizer-style', get_template_directory_uri() . '/inc/css/customizer-style.css', array());
-   wp_register_script('starter-admin-custom', get_template_directory_uri() . '/inc/js/admin_custom.js', ['jquery'], '', true);
-   wp_enqueue_script('starter-admin-custom');
+   wp_enqueue_script('starter-admin-custom', get_template_directory_uri() . '/inc/js/admin_custom.js', ['jquery'], '', true);
 }
 
 /**
